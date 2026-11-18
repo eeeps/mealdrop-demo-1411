@@ -5,7 +5,7 @@ import { toCurrency } from '../../../../helpers'
 import { Body } from '../../../../components/typography/Body'
 import { Heading } from '../../../../components/typography/Heading'
 
-const Container = styled.div<{ $isHighlighted: boolean }>(
+const Container = styled.button<{ $isHighlighted: boolean }>(
   ({ theme: { boxShadow, color, borderRadius } }) => css`
     padding: 1.5rem;
     border-radius: ${borderRadius.xs};
