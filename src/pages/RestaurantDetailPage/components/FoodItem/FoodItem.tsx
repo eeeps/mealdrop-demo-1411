@@ -8,6 +8,9 @@ import { Heading } from '../../../../components/typography/Heading'
 const Container = styled.button<{ $isHighlighted: boolean }>(
   ({ theme: { boxShadow, color, borderRadius } }) => css`
     appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
     padding: 1.5rem;
     border: none;
     border-radius: ${borderRadius.xs};
