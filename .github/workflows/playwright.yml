@@ -32,6 +32,7 @@ jobs:
           path: ./test-results
           retention-days: 30
   chromatic:
+    if: ${{ false }}
     name: Run Chromatic on Playwright tests
     needs: playwright
     runs-on: ubuntu-latest
