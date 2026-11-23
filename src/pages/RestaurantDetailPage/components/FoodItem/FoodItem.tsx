@@ -5,9 +5,14 @@ import { toCurrency } from '../../../../helpers'
 import { Body } from '../../../../components/typography/Body'
 import { Heading } from '../../../../components/typography/Heading'
 
-const Container = styled.div<{ $isHighlighted: boolean }>(
+const Container = styled.button<{ $isHighlighted: boolean }>(
   ({ theme: { boxShadow, color, borderRadius } }) => css`
+    appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
     padding: 1.5rem;
+    border: none;
     border-radius: ${borderRadius.xs};
     transition: box-shadow 0.1s ease-in;
     position: relative;
@@ -60,7 +65,7 @@ type FoodItemProps = {
 
 export const FoodItem = memo(
   ({ quantity = 0, name, price, description, onClick }: FoodItemProps) => (
-    <Container $isHighlighted={quantity > 0} onClick={onClick}>
+    <Container type="button" $isHighlighted={quantity > 0} onClick={onClick}>
       <div>
         {quantity > 0 && (
           <Quantity aria-label="food quantity" type="span" fontWeight="medium">
