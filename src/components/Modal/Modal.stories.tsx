@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import { fn } from 'storybook/test'
 
 import { Button } from '../Button'
-import { Body } from '../typography'
+import { Body, Heading } from '../typography'
 
 import { Modal } from './Modal'
+
+const heading = 'Example modal'
 
 const meta = {
   title: 'Components/Modal',
@@ -28,6 +30,7 @@ const meta = {
     ),
   ],
   args: {
+    'aria-label': heading,
     isOpen: false,
     /*
     The following line emulates the event handler that would be passed to the component
@@ -36,7 +39,7 @@ const meta = {
     */
     onClose: fn(),
   },
-  render: () => {
+  render: ({ 'aria-label': label }) => {
     const [isOpen, setIsOpen] = useState(false)
     const openModal = () => setIsOpen(true)
     const closeModal = () => setIsOpen(false)
@@ -50,12 +53,16 @@ const meta = {
         <Body>Press ESC to close modal or click on the close icon!</Body>
         <Button onClick={openModal}>Open modal</Button>
         <Modal
+          aria-label={label}
           isOpen={isOpen}
           onClose={() => {
             closeModal()
           }}
         >
-          <Body style={{ padding: '1.5rem' }}>Some content here</Body>
+          <div style={{ padding: '1.5rem' }}>
+            <Heading level={2}>{label}</Heading>
+            <Body>Some content here</Body>
+          </div>
         </Modal>
       </>
     )
