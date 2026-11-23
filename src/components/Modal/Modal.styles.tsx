@@ -3,9 +3,11 @@ import styled, { css } from 'styled-components'
 import { breakpoints } from '../../styles/breakpoints'
 
 const defaultAnimation = css`
+  &.modal-appear,
   &.modal-enter {
     transform: translateY(100%);
   }
+  &.modal-appear-active,
   &.modal-enter-active {
     transform: translateY(0);
     transition: transform 300ms;
@@ -20,10 +22,12 @@ const defaultAnimation = css`
 `
 
 const desktopAnimation = css`
+  &.modal-appear,
   &.modal-enter {
     opacity: 0;
     transform: scale(0.9);
   }
+  &.modal-appear-active,
   &.modal-enter-active {
     opacity: 1;
     transform: translateX(0);
@@ -43,19 +47,29 @@ const desktopAnimation = css`
   }
 `
 
-export const ModalContent = styled.div(
+export const ModalContent = styled.dialog(
   ({ theme: { color, borderRadius } }) => css`
     background-color: ${color.overlayBackground};
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
     border-top-left-radius: ${borderRadius.m};
     border-top-right-radius: ${borderRadius.m};
     position: fixed;
-    z-index: 99;
     top: 50%;
     right: 0;
     bottom: 0;
     left: 0;
-    transform-origin: 'top center';
+    transform-origin: top center;
     box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+
+    &::backdrop {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
 
     ${defaultAnimation}
     @media ${breakpoints.M} {
@@ -73,31 +87,6 @@ export const ModalContent = styled.div(
     }
   `
 )
-
-export const Backdrop = styled.div`
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.4);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 98;
-
-  &.backdrop-enter {
-    opacity: 0;
-  }
-  &.backdrop-enter-active {
-    opacity: 1;
-    transition: opacity 300ms;
-  }
-  &.backdrop-exit {
-    opacity: 1;
-  }
-  &.backdrop-exit-active {
-    opacity: 0;
-    transition: opacity 300ms;
-  }
-`
 
 export const TopBar = styled.div`
   position: absolute;
