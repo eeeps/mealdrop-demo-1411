@@ -16,7 +16,7 @@ test('Order created', async ({ page }, testInfo) => {
 
   await page.getByText('Fries').first().click()
 
-  await expect(page.getByTestId('modal')).toBeVisible()
+  await expect(page.getByRole('dialog', { name: 'Fries' })).toBeVisible()
   await takeSnapshot(page, testInfo)
 
   await page.getByText(/add for €2\.50/).click()

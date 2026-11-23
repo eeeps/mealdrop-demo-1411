@@ -85,7 +85,7 @@ export const FoodItemModal = ({
   }, [cartItems, item])
 
   return (
-    <Modal isOpen={!!item} onClose={onClose}>
+    <Modal aria-label={item?.name ?? 'Food item'} isOpen={!!item} onClose={onClose}>
       {item && (
         <div>
           <TopContainer>

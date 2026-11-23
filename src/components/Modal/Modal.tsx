@@ -7,11 +7,13 @@ import { useLockBodyScroll } from '../../hooks/useBodyScrollLock'
 import { ModalContent, TopBar } from './Modal.styles'
 
 type ModalProps = {
+  'aria-label': string
   isOpen: boolean
   onClose: () => void
 }
 
 export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
+  'aria-label': label,
   children,
   isOpen,
   onClose,
@@ -34,6 +36,7 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
         data-testid="modal"
         ref={contentRef}
         role="dialog"
+        aria-label={label}
         onCancel={(event) => {
           event.preventDefault()
           onClose()
